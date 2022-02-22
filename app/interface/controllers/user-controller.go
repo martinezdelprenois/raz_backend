@@ -3,8 +3,8 @@ package controllers
 import (
 	"encoding/json"
 	"net/http"
-	"../../domain/dto"
-	"../../usercases"
+	"raz.zaantu.com/m/v0/domain/dto"
+	"raz.zaantu.com/m/v0/usecases"
 )
 
 type UserController struct {

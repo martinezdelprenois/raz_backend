@@ -1,7 +1,7 @@
 package usecases
 
 import ("log"
-	"../domain/dto"
+	"raz.zaantu.com/m/v0/domain/dto"
 )
 
 type UserInteractor struct {

@@ -1,6 +1,6 @@
 package repository
 
-import "../../domain/dto"
+import "raz.zaantu.com/m/v0/domain/dto"
 
 type UserRepository struct {
 	handler DatabaseHandler

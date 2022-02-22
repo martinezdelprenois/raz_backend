@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	"../../domain/dto"
+	"raz.zaantu.com/m/v0/domain/dto"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
