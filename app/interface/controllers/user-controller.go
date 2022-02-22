@@ -20,8 +20,10 @@ func (controller *UserController) Add(res http.ResponseWriter, req *http.Request
 	var user dto.User
 	err := json.NewDecoder(req.Body).Decode(&user)
 	if err != nil {
+		payload := make(map[string]string)
+		payload["message"] = "invalid payload"
 		res.WriteHeader(http.StatusInternalServerError)
-		json.NewEncoder(res).Encode("Invalid Payload")
+		json.NewEncoder(res).Encode(payload)
 		return
 	}
 	err2 := controller.UserInteractor.CreateUser(user)
