@@ -10,8 +10,8 @@ type User struct {
 	email      string             `json:"email"`
 	area_code  string             `json:"area_code"`
 	number     string             `json:"number"`
-	created    time.Time       `json:created`
-	updated    time.Time       `json:updated`
+	created    time.Time          `json:created`
+	updated    time.Time          `json:updated`
 }
 
 type UserRepository interface {

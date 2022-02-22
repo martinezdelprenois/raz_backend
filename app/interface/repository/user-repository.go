@@ -19,7 +19,7 @@ func (repository UserRepository) SaveUser(user dto.User) error {
 }
 
 func (repository UserRepository) FindAll() ([]*dto.User,error) {
-	result, err := repository.handler.FindAllUsers()
+	results, err := repository.handler.FindAllUsers()
 	if err != nil {
 		return results, err
 	}

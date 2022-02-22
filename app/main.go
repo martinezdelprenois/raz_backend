@@ -22,7 +22,7 @@ var (
 
 func getUserController() controllers.UserController {
 	userRepo := repository.NewUserRepository(dbHandler)
-	userInteractor := usecases.NewUserInteractor(userRepository)
+	userInteractor := usecases.NewUserInteractor(userRepo)
 	userController := controllers.NewUserController(userInteractor)
 	return *userController
 }
@@ -39,8 +39,8 @@ func main() {
 		log.Println("Unable to connect to the DataBase")
 		return
 	}
-	bookController := getBookController()
-	httpRouter.POST("/book", bookController.Add)
-	httpRouter.GET("/book", bookController.FindAll)
+	userController := getUserController()
+	httpRouter.POST("/users", userController.Add)
+	httpRouter.GET("/users", userController.FindAll)
 	httpRouter.SERVE(":8000")
 }
