@@ -1,11 +1,9 @@
 package dto
 
-import "time"
-
 type User struct {
 	first_name string             `json:"first_name"`
 	surname    string             `json:"surname"`
-	dob        time.Time          `json:"dob"`
+	//dob        time.Time          `json:"dob"`
 	password   string             `json:"password"`
 	email      string             `json:"email"`
 	area_code  string             `json:"area_code"`

@@ -4,6 +4,9 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
+
+	"github.com/joho/godotenv"
 
 	"raz.zaantu.com/m/v0/infrastructure/db"
 
@@ -27,14 +30,24 @@ func getUserController() controllers.UserController {
 	return *userController
 }
 
+func getEnvVariable(key string) string {
+	// load .env file
+	err := godotenv.Load(".env")
+  
+	if err != nil {
+	  log.Fatalf("Error loading .env file")
+	}
+  
+	return os.Getenv(key)
+  }
+
 
 func main() {
-
 	httpRouter.GET("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "App is up and running..")
 	})
 	var err error
-	dbHandler, err = db.NewDBHandler("mongodb://localhost:27017", "raz")
+	dbHandler, err = db.NewDBHandler(getEnvVariable("DB_CONNECTION"), getEnvVariable("DB"))
 	if err != nil {
 		log.Println("Unable to connect to the DataBase")
 		return
@@ -42,5 +55,5 @@ func main() {
 	userController := getUserController()
 	httpRouter.POST("/users", userController.Add)
 	httpRouter.GET("/users", userController.FindAll)
-	httpRouter.SERVE(":8000")
+	httpRouter.SERVE(getEnvVariable("PORT"))
 }
