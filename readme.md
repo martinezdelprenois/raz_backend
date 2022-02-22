@@ -15,3 +15,15 @@ go mod init <example.com/m/v0>
 ```
 go fmt <file>
 ```
+
+- In order to test that all the imports in the project are correct and check syntax, type the command below in the root of the project;
+
+```
+go get
+```
+
+- To run the project simply type;
+  
+```
+go run main.go
+```

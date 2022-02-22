@@ -16,6 +16,7 @@ func NewUserController (userInteractor usecases.UserInteractor) *UserController 
 }
 
 func (controller *UserController) Add(res http.ResponseWriter, req *http.Request) {
+	res.Header().Set("Content-Type", "application/json")
 	var user dto.User
 	err := json.NewDecoder(req.Body).Decode(&user)
 	if err != nil {
