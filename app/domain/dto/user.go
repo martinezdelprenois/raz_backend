@@ -3,7 +3,6 @@ package dto
 import "time"
 
 type User struct {
-	ID         primitive.ObjectID `json:"_id"`
 	first_name string             `json:"first_name"`
 	surname    string             `json:"surname"`
 	dob        time.Time          `json:"dob"`
