@@ -14,6 +14,12 @@ type User struct {
 	Updated   time.Time `json:"updated"`
 }
 
+func CreateUser(firstName string, surname string, dob time.Time, email string, password string) User {
+	newUser := User{FirstName: firstName, Password: password}
+	return newUser
+}
+
+
 type UserRepository interface {
 	SaveUser(user User) error
 	FindAll() ([]*User, error)
