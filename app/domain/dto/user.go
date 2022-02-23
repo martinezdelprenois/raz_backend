@@ -1,15 +1,17 @@
 package dto
 
+import "time"
+
 type User struct {
-	first_name string             `json:"first_name"`
-	surname    string             `json:"surname"`
-	//dob        time.Time          `json:"dob"`
-	password   string             `json:"password"`
-	email      string             `json:"email"`
-	area_code  string             `json:"area_code"`
-	number     string             `json:"number"`
-	//created    time.Time          `json:created`
-	//updated    time.Time          `json:updated`
+	FirstName string    `json:"first_name"`
+	Surname   string    `json:"surname"`
+	DOB       time.Time `json:"dob"`
+	Password  string    `json:"password"`
+	Email     string    `json:"email"`
+	AreaCode  string    `json:"area_code"`
+	Number    string    `json:"number"`
+	Created   time.Time `json:"created"`
+	Updated   time.Time `json:"updated"`
 }
 
 type UserRepository interface {
