@@ -1,7 +1,12 @@
 package usecases
 
-import ("log"
+import (
+	"log"
+	"time"
+
 	"raz.zaantu.com/m/v0/domain/dto"
+	"raz.zaantu.com/m/v0/utils"
+
 )
 
 type UserInteractor struct {
@@ -12,7 +17,24 @@ func NewUserInteractor (repository dto.UserRepository) UserInteractor {
 	return UserInteractor{repository}
 }
 
+func hashPassword(user *dto.User) {
+	hashedPassword, _ := utils.HashPassword(user.Password)
+	user.Password = hashedPassword
+}
+
+func updateTime(user *dto.User) {
+	user.Created = time.Now()
+	user.Updated = time.Now()
+}
+
+func editUpdatedTime(user *dto.User) {
+	user.Updated = time.Now()
+}
+
 func (interactor *UserInteractor) CreateUser(user dto.User) error {
+	hashPassword(&user)
+	updateTime(&user)
+	
 	err := interactor.UserRepository.SaveUser(user)
 	if err != nil {
 		log.Println(err.Error())

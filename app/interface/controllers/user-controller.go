@@ -3,7 +3,6 @@ package controllers
 import (
 	"encoding/json"
 	"net/http"
-	"log"
 
 
 	"raz.zaantu.com/m/v0/domain/dto"
@@ -23,8 +22,6 @@ func (controller *UserController) Add(res http.ResponseWriter, req *http.Request
 	var user dto.User
 	decoder := json.NewDecoder(req.Body)
 	err := decoder.Decode(&user)
-	hashedPassword, _ := dto.HashPassword(user.Password)
-	log.Println("hash ", hashedPassword)
 
 	if err != nil {
 		payload := make(map[string]string)
