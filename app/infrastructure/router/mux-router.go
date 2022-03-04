@@ -9,9 +9,7 @@ import (
 
 type muxRouter struct{}
 
-var (
-	muxRouterInstance = mux.NewRouter()
-)
+var muxRouterInstance = mux.NewRouter()
 
 func NewMuxRouter() Router {
 	return &muxRouter{}

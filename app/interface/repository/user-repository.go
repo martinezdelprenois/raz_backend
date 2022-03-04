@@ -10,15 +10,15 @@ func NewUserRepository(handler DatabaseHandler) UserRepository {
 	return UserRepository{handler}
 }
 
-func (repository UserRepository) SaveUser(user dto.User) error {
-	err := repository.handler.SaveUser(user)
+func (repository UserRepository) SaveUser(user dto.User) (*dto.User, error) {
+	result, err := repository.handler.SaveUser(user)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return result, nil
 }
 
-func (repository UserRepository) FindAll() ([]*dto.User,error) {
+func (repository UserRepository) FindAll() ([]*dto.User, error) {
 	results, err := repository.handler.FindAllUsers()
 	if err != nil {
 		return results, err

@@ -30,14 +30,14 @@ func (controller *UserController) Add(res http.ResponseWriter, req *http.Request
 		json.NewEncoder(res).Encode(payload)
 		return
 	}
-	err2 := controller.UserInteractor.CreateUser(user)
+	result,err2 := controller.UserInteractor.CreateUser(user)
 	if err2 != nil {
 		res.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(res).Encode(err2.Error())
 		return
 	}
 	res.WriteHeader(http.StatusOK)
-	json.NewEncoder(res).Encode(user)
+	json.NewEncoder(res).Encode(result)
 }
 
 

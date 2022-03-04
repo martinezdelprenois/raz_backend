@@ -2,7 +2,6 @@ package dto
 
 import "time"
 
-
 type User struct {
 	FirstName string    `json:"first_name"`
 	Surname   string    `json:"surname"`
@@ -15,8 +14,7 @@ type User struct {
 	Updated   time.Time `json:"updated"`
 }
 
-
 type UserRepository interface {
-	SaveUser(user User) error
+	SaveUser(user User) (*User, error)
 	FindAll() ([]*User, error)
 }

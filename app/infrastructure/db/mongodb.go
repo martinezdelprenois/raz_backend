@@ -2,12 +2,13 @@ package db
 
 import (
 	"context"
+	"fmt"
 	"log"
 
-	"raz.zaantu.com/m/v0/domain/dto"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"raz.zaantu.com/m/v0/domain/dto"
 )
 
 type DBHandler struct {
@@ -51,11 +52,14 @@ func (dbHandler DBHandler) FindAllUsers() ([]*dto.User, error) {
 	return results, nil
 }
 
-func (dbHandler DBHandler) SaveUser(user dto.User) error {
+func (dbHandler DBHandler) SaveUser(user dto.User) (*dto.User, error) {
+	var result *dto.User
 	collection := dbHandler.database.Collection("users")
-	_, err := collection.InsertOne(context.TODO(), user)
+	userResult, err := collection.InsertOne(context.TODO(), user)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+
+	fmt.Printf("The ting is: %v", userResult.InsertedID)
+	return result, nil
 }
